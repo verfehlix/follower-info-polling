@@ -1,4 +1,4 @@
-package com.verfehlix.pollerman;
+package main.java.com.verfehlix.pollerman;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
