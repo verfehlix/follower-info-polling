@@ -1,7 +1,6 @@
-package com.verfehlix.pollerman;
+package com.verfehlix.followerinfopolling;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,15 +29,25 @@ public class FollowerMonitor {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * Constructor --> sets username (twitter handle) based on application properties / arguments
+     * and initializes a twitter profile connector for that handle
+     * @param userName
+     * @throws TwitterException
+     */
     @Autowired
     public FollowerMonitor(@Value("${twitter.userName}") String userName) throws TwitterException {
         this.userName = userName;
         this.myProfileConnector = new TwitterProfileConnector(this.userName);
     }
 
-    @Scheduled(fixedRate = 60000)
+    /**
+     * Scheduled function that gets executed every 2 minutes (120.000 ms)
+     * Fetches follower information and saves results into a database
+     * @throws TwitterException
+     */
+    @Scheduled(fixedRate = 120000)
     public void monitorFollowers() throws TwitterException {
-
         // get current timestamp
         Date date = new Date();
         String timestamp = DATE_FORMAT.format(date);
@@ -53,13 +62,18 @@ public class FollowerMonitor {
         writeFollowerInfoToDatabase(date, followers);
     }
 
+    /**
+     * Function that writes given follower information (in the form of a list containing all handles
+     * of the followers) into a database
+     * @param date
+     * @param followers
+     */
     private void writeFollowerInfoToDatabase(Date date, List<User> followers) {
-
         // get follower count
         int followerCount = followers.size();
 
         // convert list of Twitter users -> list of usernames -> json array of usernames
-        List<String> followerNames = followers.stream().map(User::getName).collect(Collectors.toList());
+        List<String> followerNames = followers.stream().map(User::getScreenName).collect(Collectors.toList());
         String followerNamesJsonArray = new Gson().toJson(followerNames);
 
         // write info to DB

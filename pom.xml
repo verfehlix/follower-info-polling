@@ -13,10 +13,10 @@
     </parent>
 
     <groupId>com.verfehlix</groupId>
-    <artifactId>pollerman</artifactId>
+    <artifactId>follower-info-polling</artifactId>
     <version>0.0.1</version>
-    <name>pollerman</name>
-    <description>P O L L E R M A N</description>
+    <name>follower-info-polling</name>
+    <description>Polls a twitter user's follower information periodically and saves results into a database</description>
 
     <properties>
         <java.version>11</java.version>
@@ -62,18 +62,6 @@
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
             <version>[4.0,)</version>
-        </dependency>
-
-        <!-- GraphQL Stuff -->
-        <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-spring-boot-starter</artifactId>
-            <version>5.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java-tools</artifactId>
-            <version>5.2.4</version>
         </dependency>
 
     </dependencies>
