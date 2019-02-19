@@ -1,5 +1,5 @@
-# pollerman
-java spring boot service that regularly polls a twitter profile &amp; saves the follower count
+# follower-info-polling
+java spring boot service that regularly polls a twitter profile &amp; saves the follower count & names of the followers
 
 ## How to use
 
