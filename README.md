@@ -3,7 +3,7 @@ java spring boot service that regularly polls a twitter profile &amp; saves the 
 
 ## How to use
 
-- Configure ```twitter.userName```, ```spring.datasource.url```, ```spring.datasource.username``` and ```pring.datasource.password```
+- Configure ```twitter.userName```, ```spring.datasource.url```, ```spring.datasource.username``` and ```spring.datasource.password```
 
   - either in ```resources/application.properties``` 
   
